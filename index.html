@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HELIOS-09 // Interactive 3D Orbital System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader">
+      <div class="loader-core">
+        <div class="loader-ring"></div>
+        <div class="loader-code" id="loader-pct">00%</div>
+      </div>
+      <div class="loader-sub" id="loader-log">ASSEMBLING 3D ORBITAL EPHEMERIS & BLENDER GLTF ASSETS...</div>
+    </div>
+
+    <canvas id="webgl"></canvas>
+
+    <div id="cursor-reticle" class="cursor-reticle">
+      <span id="reticle-label">CLICK TO INTERACT</span>
+    </div>
+
+    <header class="hud-top">
+      <div class="brand-lockup">
+        <span class="orbital-dot"></span>
+        <span class="brand-name">HELIOS // ORBITAL SYSTEM</span>
+        <span class="brand-coords" id="scroll-au-readout">0.00 AU</span>
+      </div>
+
+      <nav class="planet-jumper" aria-label="Celestial Waypoints">
+        <button class="waypoint-btn active" data-stop="0">00. HELIOS SUN</button>
+        <button class="waypoint-btn" data-stop="1">01. TERRA-TOKYO</button>
+        <button class="waypoint-btn" data-stop="2">02. KRONOS MOON</button>
+        <button class="waypoint-btn" data-stop="3">03. VALKYRIE RIFT</button>
+        <button class="waypoint-btn" data-stop="4">04. SYSTEM OVERVIEW</button>
+      </nav>
+
+      <div class="hud-toggles">
+        <button id="orbit-lock-btn" class="hud-btn">360° FREE ORBIT: OFF</button>
+        <button id="audio-btn" class="hud-btn">SOUND: OFF</button>
+      </div>
+    </header>
+
+    <div class="planet-interaction-bar" id="interaction-bar">
+      <span class="bar-eyebrow" id="active-world-tag">STAR CORE // PRIMARY ION DRIVE</span>
+      <div class="bar-buttons" id="dynamic-actions"></div>
+    </div>
+
+    <aside class="orbital-radar" title="Click to warp to next celestial world">
+      <div class="radar-header">
+        <span>ORBITAL EPHEMERIS</span>
+        <span id="cam-mode-pill">SCROLL FLIGHT</span>
+      </div>
+      <canvas id="radar-canvas" width="160" height="160"></canvas>
+    </aside>
+
+    <main class="scroll-track">
+      <section class="scroll-chapter" data-chapter="0">
+        <div class="chapter-content">
+          <p class="chapter-index">00 / CELESTIAL ORIGIN — 0.00 AU</p>
+          <h1 class="chapter-title">THE HELIOS<br/><em>DYSON CORE</em></h1>
+          <p class="chapter-lead">
+            At the gravitational center of the system spins Mike Murdock’s Blender <strong>Primary Ion Drive</strong> encased inside a solar corona. Scroll down to launch outward along the planetary ecliptic, or click the core in 3D space to unleash a solar flare shockwave.
+          </p>
+          <div class="scroll-prompt">
+            <span class="mouse-icon"></span>
+            <span>SCROLL TO FLY THROUGH THE SYSTEM</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="scroll-chapter align-right" data-chapter="1">
+        <div class="chapter-content">
+          <p class="chapter-index">01 / HABITAT WORLD — 1.42 AU</p>
+          <h2 class="chapter-title">TERRA-TOKYO<br/><em>ARK BIOME</em></h2>
+          <p class="chapter-lead">
+            Orbiting in the habitable zone, Glen Fox’s animated <strong>Littlest Tokyo</strong> metropolis rests atop a terraformed asteroid crust surrounded by atmospheric rings, while animated 3D <strong>Flamingo</strong> sky-fauna circle the upper skyline.
+          </p>
+        </div>
+      </section>
+
+      <section class="scroll-chapter" data-chapter="2">
+        <div class="chapter-content">
+          <p class="chapter-index">02 / OUTER ASTEROID BELT — 2.85 AU</p>
+          <h2 class="chapter-title">KRONOS<br/><em>SENTINEL MOON</em></h2>
+          <p class="chapter-lead">
+            Beyond the 650-rock procedural asteroid belt lies the ringed ice moon Kronos. Stationed on its relay deck is the rigged <strong>Unit-09 Expressive Droid</strong>—click directly on the robot in 3D space to cycle through combat, dance, jump, and wave animations.
+          </p>
+        </div>
+      </section>
+
+      <section class="scroll-chapter align-right" data-chapter="3">
+        <div class="chapter-content">
+          <p class="chapter-index">03 / DEEP SPACE ANOMALY — 4.10 AU</p>
+          <h2 class="chapter-title">VALKYRIE<br/><em>SINGULARITY</em></h2>
+          <p class="chapter-lead">
+            Suspended inside counter-rotating golden astrolabe rings, the battle-scarred <strong>Damaged Helmet</strong> artifact tracks your cursor across deep space. Click the artifact to engage X-Ray wireframe telemetry.
+          </p>
+        </div>
+      </section>
+
+      <section class="scroll-chapter center-stage" data-chapter="4">
+        <div class="chapter-content">
+          <p class="chapter-index">04 / ECLIPTIC OBSERVATORY — 6.50 AU</p>
+          <h2 class="chapter-title">FULL SYSTEM<br/><em>ORRERY VIEW</em></h2>
+          <p class="chapter-lead">
+            High above the orbital plane, observe all worlds, asteroid belts, and Dyson rings operating in unison. Click any planet in 3D space or on the radar map to dive back in.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
